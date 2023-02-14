@@ -4,28 +4,45 @@
     <span class="addContainer" v-on:click="addTodo">
       <i class="fa-solid fa-square-plus addBtn"></i>
     </span>
+
+    <AlertModal v-if="showModal" @close="showModal = false">
+      <h3 slot="header">
+        경고!
+        <i class="fa-solid fa-times closeModalBtn" @click="showModal = false"></i>
+      </h3>
+      <h3 slot="body">아무것도 입력하지 않으셨습니다.</h3>
+    </AlertModal>
+    
   </div>
 </template>
 
 <script>
+import AlertModal from './common/AlertModal.vue'
+
 export default {
-  data: function(){
+  data: function () {
     return {
       newTodoItem: "",
+      showModal: false,
     }
   },
   methods: {
-    addTodo: function(){
-      if (this.newTodoItem !== '' ){
+    addTodo: function () {
+      if (this.newTodoItem !== '') {
         this.$emit('addTodoItem', this.newTodoItem);
         this.clearInput();
+      }else{
+        this.showModal = !this.showModal
       }
     },
 
-    clearInput: function(){
+    clearInput: function () {
       this.newTodoItem = '';
     },
-  }
+  },
+  components: {
+    AlertModal: AlertModal,
+  },
 }
 </script>
 
@@ -33,25 +50,32 @@ export default {
 input:focus {
   outline: none;
 }
-.inputBox{
+
+.inputBox {
   background: white;
   height: 50px;
   line-height: 50px;
   border-radius: 5px;
 }
+
 .inputBox input {
   border-style: none;
   font-size: 0.9rem;
 }
-.addContainer{
+
+.addContainer {
   float: right;
   background: linear-gradient(to right, #6478F8, #8763FB);
   display: block;
   width: 3rem;
   border-radius: 0 5px 5px 0;
 }
-.addBtn{
+
+.addBtn {
   color: white;
   vertical-align: middle;
+}
+.closeModalBtn{
+  color: #42b983;
 }
 </style>

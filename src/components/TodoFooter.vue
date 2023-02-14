@@ -6,8 +6,8 @@
 
 <script>
 export default {
-  methods:{
-    clearTodo : function(){
+  methods: {
+    clearTodo: function () {
       this.$emit('clearAll');
     }
   }
@@ -15,7 +15,7 @@ export default {
 </script>
 
 <style scoped>
-.clearAllContainer{
+.clearAllContainer {
   width: 8.5rem;
   height: 50px;
   line-height: 50px;
@@ -24,7 +24,7 @@ export default {
   margin: 0 auto;
 }
 
-.clearAllBtn{
+.clearAllBtn {
   color: #e20303;
   display: block;
 }
