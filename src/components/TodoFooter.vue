@@ -1,15 +1,15 @@
 <template>
   <div class="clearAllContainer">
-    <span class="clearAllBtn" @click="clearTodo">모두 지우기</span>
+    <span class="clearAllBtn" @click="clearAllItems">모두 지우기</span>
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
   methods: {
-    clearTodo() {
-      this.$store.commit('clearAllItems');
-    }
+    ...mapMutations(['clearAllItems']),
   }
 }
 </script>
